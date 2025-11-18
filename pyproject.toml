@@ -1,0 +1,15 @@
+[project]
+name = "cube"
+version = "1.0.0"
+description = "三阶魔方速解（基于 CFOP 方法）"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = ["pytest>=9.0.1"]

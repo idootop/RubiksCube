@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>魔方</title>
+  <script src="/jquery.min.js"></script>
+  <script src="/roofpig.min.js"></script>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    .roofpig {
+      width: 100%;
+      max-width: min(calc(100vw - 40px), 300px);
+      border: none !important;
+    }
+
+    .roofpig-algtext {
+      font-size: 14px !important;
+      height: auto !important;
+      padding: 4px;
+    }
+
+    div :has(.roofpig-algtext) {
+      height: auto !important;
+      border: none !important;
+    }
+
+    .roofpig-button {
+      font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+      font-weight: normal;
+      font-style: normal;
+      padding: 0;
+      box-shadow: inset 0px 1px 0px 0px #ffffff;
+      background-color: #ededed;
+      border: 1px solid #dcdcdc;
+      outline: none;
+      border-radius: 2px;
+      text-indent: 0;
+      display: inline-block;
+      text-decoration: none;
+      text-align: center;
+      text-shadow: 1px 1px 0 #ffffff;
+    }
+
+    .roofpig-button-enabled {
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #bbb));
+      background: -moz-linear-gradient(center top, #ededed 5%, #bbb 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#bbb');
+    }
+
+    .roofpig-button-enabled:hover {
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bbb), color-stop(1, #ededed));
+      background: -moz-linear-gradient(center top, #bbb 5%, #ededed 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#bbb', endColorstr='#ededed');
+    }
+
+    .roofpig-button-enabled:active,
+    .roofpig-button-fake-active {
+      position: relative;
+      top: 2px;
+    }
+
+    .roofpig-count {
+      font-weight: normal;
+      font-style: normal;
+      color: black;
+      text-align: right;
+      float: right;
+    }
+
+    .roofpig-algtext {
+      background-color: #eee;
+      margin-bottom: 2px;
+      font-weight: normal;
+      font-style: normal;
+      color: black;
+    }
+
+    .roofpig-past-algtext {
+      background-color: #ff9;
+    }
+
+    .roofpig-help-button {
+      font-size: 14px;
+      height: 20px;
+      width: 20px;
+      position: absolute;
+      right: 2px;
+      top: 3px;
+
+      color: #ddd;
+      text-align: center;
+      border-radius: 8px;
+    }
+
+    .roofpig-help-button:hover {
+      color: black;
+      background-color: rgba(220, 220, 220, 0.7);
+    }
+
+    .roofpig-help-button:active {
+      background-color: #aaa;
+    }
+
+    .roofpig-help {
+      position: absolute;
+      top: -1px;
+      white-space: nowrap;
+
+      font-size: 10px;
+      font-weight: normal;
+      font-style: normal;
+      color: black;
+      text-align: left;
+      background-color: rgba(255, 255, 255, 0.94);
+
+      border: 1px solid #aaa;
+      padding: 0 4px 4px 4px;
+    }
+
+    .roofpig-help div {
+      margin: 2px 0;
+    }
+
+    .roofpig-help span {
+      font-size: 11px;
+      padding: 0 2px;
+      background-color: #ddd;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="roofpig" data-config="algdisplay=2p|setupmoves=M2'">
+  </div>
+
+  <script>
+    $(document).on('click', '.roofpig', function () {
+      const algorithm = prompt('请输入算法', $(this).text());
+      if (algorithm) {
+        $('.roofpig').remove();
+        $('body').append(`<div class="roofpig" data-config="algdisplay=2p|flags=showalg|alg=${algorithm}"></div>`);
+        new CubeAnimation($('.roofpig'));
+      }
+    });
+  </script>
+
+</body>
+
+</html>
