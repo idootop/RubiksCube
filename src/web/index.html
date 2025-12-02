@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>魔方</title>
   <script src="/jquery.min.js"></script>
-  <script src="/roofpig.min.js"></script>
   <style>
     body {
       display: flex;
@@ -140,12 +139,52 @@
 </head>
 
 <body>
+  <!-- todo intro page -->
+  <div id="intro">小米 AI 眼镜解魔方</div>
+  <script>
+    (async () => {
+      let pre_state = {}
+      while (true) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        const res = await fetch("/state.json");
+        const state = await res.json();
+        if (!state?.ops) {
+          continue
+        }
 
-  <!-- 使用 REVERSED 还原魔方初始状态 -->
-  <div class="roofpig"
-    data-config="algdisplay=2p|setupmoves=U' F2 R2 F L F' R2 F L' F R U B U' B' R' U r U B U' B' r' B U B' U2 B U B' U L U' L' U B' U B U' L' U L U2 F U F' U2 F' U F U2 R U R' U2 D2 R D' L D' B' R2 U F' R' y">
-  </div>
+        // 初始化状态
+        if (!pre_state.ops) {
+          const roofpig = document.createElement('div');
+          roofpig.classList.add('roofpig');
+          roofpig.setAttribute("data-config", Object.entries({
+            // setupmoves: state.reversed_ops,
+            alg: state.ops,
+            algdisplay: "2p",
+            flags: 'showalg'
+          }).map(([key, value]) => `${key}=${value}`).join("|"));
+          document.body.appendChild(roofpig);
+          document.getElementById('intro').remove()
+          new CubeAnimation($(roofpig))
+        }
 
+        if (pre_state.step == state.step) {
+          continue
+        }
+
+        pre_state = state
+
+        const cube = CubeAnimation.by_id[1]
+
+        // 前进后退到当前的 step
+        const direction = state.step > cube.alg.next ? 'next' : 'prev';
+        const times = Math.abs(state.step - cube.alg.next)
+        for (let i = 0; i < times; i++) {
+          CubeAnimation.by_id[1].button_click(direction);
+        }
+      }
+    })()
+  </script>
+  <script src="/roofpig.min.js"></script>
 </body>
 
 </html>
