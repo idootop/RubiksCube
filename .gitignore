@@ -12,3 +12,5 @@ wheels/
 # Misc
 .DS_Store
 temp
+data
+src/vision/scripts
