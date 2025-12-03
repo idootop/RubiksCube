@@ -52,7 +52,8 @@ class AdbHelper:
             ],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
-            text=True,
+            encoding="utf-8",
+            errors="replace",
         )
 
         set_volume_pattern = re.compile(
@@ -97,7 +98,8 @@ class AdbHelper:
             ["adb", "-s", self.server_device, "logcat"],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
-            text=True,
+            encoding="utf-8",
+            errors="replace",
         )
 
         asr_pattern = re.compile(r"onAsrFinal:([a-f0-9]+),(.+)$")
