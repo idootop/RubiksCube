@@ -118,7 +118,7 @@ class ChatService:
 
     def _is_face_confirmation(self, text: str) -> bool:
         """检查是否是面确认指令"""
-        keywords = ["这是", "好了", "拍照"]
+        keywords = ["这是", "好了", "继续", "好的", "拍照"]
         return any(kw in text for kw in keywords)
 
     def _handle_cube_trigger(self):
@@ -128,7 +128,7 @@ class ChatService:
         self.context.current_face_index = 0
 
         current_face = self._get_current_face()
-        self.notify(f"好的主人，让我先看下魔方的{current_face.chinese_name}是什么颜色")
+        self.notify(f"好的主人，让我看下魔方{current_face.chinese_name}是什么颜色。")
 
     def _handle_face_confirmation(self, text: str):
         """处理面确认"""
@@ -166,7 +166,7 @@ class ChatService:
         # 检查是否收集完成
         next_face = self._get_current_face()
         if next_face:
-            self.notify(f"收到，让我再看看魔方的{next_face.chinese_name}是什么颜色")
+            self.notify(f"好的，让我看看{next_face.chinese_name}是什么颜色。")
         else:
             self._start_solving()
 
@@ -224,9 +224,8 @@ class ChatService:
 
         move = self.context.solution_steps[step]
         desc = Move.description(move)
-        self.notify(
-            f"{desc}，{f'还剩{total - 1 - step}步' if total - step > 0 else '魔方已解'}"
-        )
+        remaining_steps = total - 1 - step
+        self.notify(f"{desc}。{'' if remaining_steps > 0 else '魔方已解。'}")
         self.context.current_step_index = step + 1
 
     def _handle_previous_step(self):
