@@ -14,9 +14,7 @@
 
 本项目通过小米 AI 眼镜识别魔方，并在 1 秒钟内给出最优解法（20 步以内），然后使用 3D 动画演示每一步转动，让解魔方变得前所未有的简单有趣。
 
-## 演示视频
-
-![Demo](assets/demo.gif)
+![Demo](assets/cover.webp)
 
 ## 核心功能
 
@@ -59,4 +57,3 @@
 ## License
 
 MIT License © 2025-PRESENT [Del Wang](https://del.wang)
-

@@ -14,9 +14,7 @@
 
 This project uses Xiaomi AI Glasses to recognize Rubik's cubes and provides optimal solutions (within 20 moves) in under 1 second, then demonstrates each move with 3D animations, making solving Rubik's cubes easier and more fun than ever before.
 
-## Demo
-
-![Demo](assets/demo.gif)
+![Demo](assets/cover.webp)
 
 ## Features
 
