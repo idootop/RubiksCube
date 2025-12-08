@@ -15,6 +15,21 @@ from chat import ChatService
 from chat.adb import AdbHelper
 
 
+def print_banner():
+    """显示 ASCII 艺术 banner"""
+    GREEN = "\033[32m"  # 绿色
+    RESET = "\033[0m"  # 重置颜色
+    banner = """
+▗▖  ▗▖▗▄▄▄▖ ▗▄▄▖▗▄▄▄▖ ▗▄▄▖     ▗▄▄▖▗▖ ▗▖▗▄▄▖ ▗▄▄▄▖
+▐▛▚▞▜▌  █  ▐▌     █  ▐▌       ▐▌   ▐▌ ▐▌▐▌ ▐▌▐▌   
+▐▌  ▐▌  █  ▐▌▝▜▌  █  ▐▌       ▐▌   ▐▌ ▐▌▐▛▀▚▖▐▛▀▀▘
+▐▌  ▐▌▗▄█▄▖▝▚▄▞▘▗▄█▄▖▝▚▄▄▖    ▝▚▄▄▖▝▚▄▞▘▐▙▄▞▘▐▙▄▄▖
+                                                                               
+Made with ❤️ by https://del.wang   Version: 1.0.0                                           
+    """
+    print(f"{GREEN}{banner}{RESET}")
+
+
 def main():
     parser = argparse.ArgumentParser(description="魔方对话服务")
     parser.add_argument(
@@ -36,15 +51,15 @@ def main():
     )
 
     args = parser.parse_args()
+    
+    # 显示 ASCII banner
+    print_banner()
 
     print("=" * 60)
-    print("🎲 魔方对话服务")
+    print("👓 小米 AI 眼镜 ｜ 看一看，解魔方")
     print("=" * 60)
-
-    print(f"📍 服务端设备: {args.server}")
-    print(f"📍 客户端设备: {args.client}")
-    print(f"📍 TTS 接口地址: {args.tts}")
-    print("=" * 60)
+    
+    print("\n✅ 服务已启动...")
 
     adb = AdbHelper(
         server_device=args.server,
