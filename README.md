@@ -6,7 +6,7 @@
 
 <p align="center">Solve any 3x3 Rubik's Cube in <strong>20 moves</strong> using Xiaomi AI Glasses.</p>
 
-[中文文档](README_CN.md) | [Demo Video]([LICENSE](https://www.youtube.com/watch?v=t4JbJy1Jbgw))
+[中文文档](README_CN.md) | [Demo Video](https://www.youtube.com/watch?v=t4JbJy1Jbgw)
 
 </div>
 
